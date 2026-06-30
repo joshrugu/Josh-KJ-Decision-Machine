@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff3b78" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Decision Machine" />
+  <title>❤️ The Josh & KJ Decision Machine</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <button id="musicBtn" class="icon-btn" aria-label="Toggle music">🔇</button>
+      <p class="eyebrow">Mobile-first love arcade</p>
+      <h1>❤️ The Josh & KJ Decision Machine</h1>
+      <p class="tagline">Making decisions so we don’t have to.</p>
+    </header>
+
+    <main>
+      <section class="card controls-card">
+        <div class="segment" role="tablist" aria-label="Decision mode">
+          <button class="mode-btn active" data-mode="activities">🎡 Activities</button>
+          <button class="mode-btn" data-mode="foods">🍜 Food</button>
+        </div>
+
+        <div class="filters">
+          <label>
+            Mood
+            <select id="moodFilter">
+              <option value="all">Surprise Me</option>
+              <option value="romantic">Romantic</option>
+              <option value="adventurous">Adventurous</option>
+              <option value="relaxing">Relaxing</option>
+              <option value="budget">Budget-Friendly</option>
+              <option value="active">Active</option>
+            </select>
+          </label>
+          <label>
+            Budget
+            <select id="budgetFilter">
+              <option value="all">Any Budget</option>
+              <option value="0-20">RM0–20</option>
+              <option value="20-50">RM20–50</option>
+              <option value="50-100">RM50–100</option>
+              <option value="100+">RM100+</option>
+            </select>
+          </label>
+          <label>
+            Distance
+            <select id="distanceFilter">
+              <option value="all">Anywhere</option>
+              <option value="nearby">Nearby</option>
+              <option value="20min">Up to 20 mins</option>
+              <option value="anywhere">Roadtrip Mood</option>
+            </select>
+          </label>
+          <label class="weather-toggle">
+            <input type="checkbox" id="rainToggle" />
+            Hide outdoor if raining 🌧️
+          </label>
+        </div>
+      </section>
+
+      <section class="machine-card card">
+        <div class="slot-top">
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+          <strong>JACKPOT REEL</strong>
+          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        </div>
+        <div class="slot-window" aria-live="polite">
+          <div id="reel" class="reel">Tap SPIN</div>
+        </div>
+        <button id="spinBtn" class="spin-btn">🎰 SPIN THE JACKPOT</button>
+        <p class="rule">🔁 With mutual agreement, we can spin again.</p>
+      </section>
+
+      <section class="card result-card">
+        <p class="section-label">🏆 Today’s Decision</p>
+        <h2 id="resultTitle">Ready when you are</h2>
+        <p id="resultMeta" class="meta">Pick a mode, set the vibe, then spin.</p>
+        <div class="challenge-box">
+          <span>💡 Challenge</span>
+          <p id="challengeText">No “anything also can” allowed.</p>
+        </div>
+      </section>
+
+      <section class="card meter-card">
+        <div class="meter-header">
+          <div>
+            <p class="section-label">💖 Date Night Meter</p>
+            <h3 id="meterTitle">Balanced Couple Energy</h3>
+          </div>
+          <span id="levelBadge">Lv. 1</span>
+        </div>
+        <div class="meter"><span id="meterFill"></span></div>
+        <p id="meterNote">Spin to build your tiny empire of memories.</p>
+      </section>
+
+      <section class="card achievements-card">
+        <p class="section-label">🏅 Achievements</p>
+        <div id="achievements" class="achievements"></div>
+      </section>
+
+      <section class="card stats-card">
+        <p class="section-label">📊 Couple Stats</p>
+        <div class="stats-grid">
+          <div><strong id="totalSpins">0</strong><span>Total Spins</span></div>
+          <div><strong id="foodSpins">0</strong><span>Food Picks</span></div>
+          <div><strong id="dateSpins">0</strong><span>Date Picks</span></div>
+          <div><strong id="jackpots">0</strong><span>Jackpots</span></div>
+        </div>
+      </section>
+
+      <section class="card history-card">
+        <div class="section-row">
+          <p class="section-label">📜 Recent Spins</p>
+          <button id="clearBtn" class="ghost-btn">Clear</button>
+        </div>
+        <ul id="historyList" class="history-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+  <audio id="bgMusic" loop preload="auto"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
