@@ -1,131 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#ff3b78" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Decision Machine" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>❤️ The Josh & KJ Decision Machine</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="A mobile-first date and food jackpot roulette for Josh & KJ." />
+  <meta name="theme-color" content="#ff477e" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    :root{
+      --bg1:#fff0f6; --bg2:#ffe8cc; --card:rgba(255,255,255,.72); --card2:rgba(255,255,255,.90);
+      --text:#281522; --muted:#765b6a; --hot:#ff477e; --gold:#ffbf3d; --purple:#7c3aed; --green:#13b981;
+      --shadow:0 20px 55px rgba(255,71,126,.22); --line:rgba(255,255,255,.66);
+    }
+    body.night{--bg1:#170724; --bg2:#35104a; --card:rgba(35,18,52,.70); --card2:rgba(49,24,70,.92); --text:#fff6fb; --muted:#ceb7ca; --shadow:0 20px 60px rgba(124,58,237,.35); --line:rgba(255,255,255,.14)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;min-height:100%;font-family:ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;color:var(--text);background:radial-gradient(circle at top left,var(--bg2),transparent 38%),linear-gradient(145deg,var(--bg1),var(--bg2));}
+    body{overflow-x:hidden;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+    .bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.float{position:absolute;opacity:.22;animation:drift 11s linear infinite;font-size:28px}.float:nth-child(2){left:70%;animation-duration:14s}.float:nth-child(3){left:20%;animation-duration:16s}.float:nth-child(4){left:88%;animation-duration:12s}.float:nth-child(5){left:45%;animation-duration:19s}@keyframes drift{from{transform:translateY(105vh) rotate(0deg)}to{transform:translateY(-20vh) rotate(360deg)}}
+    .app{width:min(460px,100%);margin:0 auto;padding:16px 14px 96px}.top{display:flex;align-items:center;gap:10px;margin:8px 0 12px}.brand{flex:1}.brand h1{font-size:24px;line-height:1.05;margin:0;letter-spacing:-.7px}.brand p{margin:6px 0 0;color:var(--muted);font-size:13px}.icon-btn{width:42px;height:42px;border:0;border-radius:999px;background:var(--card2);box-shadow:var(--shadow);font-size:19px;color:var(--text)}
+    .hello{background:linear-gradient(135deg,rgba(255,71,126,.14),rgba(255,191,61,.18));border:1px solid var(--line);border-radius:24px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow);backdrop-filter:blur(16px)}.hello b{font-size:15px}.hello span{display:block;margin-top:3px;color:var(--muted);font-size:13px}
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}.tab{border:0;border-radius:18px;padding:14px 8px;font-weight:900;color:var(--muted);background:var(--card);box-shadow:0 8px 22px rgba(0,0,0,.07);font-size:15px}.tab.active{background:linear-gradient(135deg,var(--hot),#ff7a59);color:white;box-shadow:var(--shadow)}
+    .filters{display:flex;gap:8px;overflow:auto;padding:4px 1px 10px;scrollbar-width:none}.chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--text);padding:10px 12px;border-radius:999px;font-weight:750;font-size:13px}.chip.active{background:var(--text);color:var(--bg1)}
+    .slot{position:relative;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.55));border:1px solid var(--line);border-radius:30px;padding:18px 14px 16px;box-shadow:var(--shadow);overflow:hidden}.night .slot{background:linear-gradient(180deg,rgba(75,38,105,.92),rgba(42,17,61,.72))}.lights{display:flex;justify-content:space-between;margin-bottom:12px}.light{width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold);animation:blink .9s infinite alternate}.light:nth-child(even){animation-delay:.45s;background:var(--hot);box-shadow:0 0 16px var(--hot)}@keyframes blink{to{opacity:.45;transform:scale(.82)}}
+    .machine{border-radius:24px;background:linear-gradient(135deg,#391235,#75113d 45%,#e23c74);padding:12px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.22)}.reels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.reel{height:88px;border-radius:18px;background:#fffafc;display:grid;place-items:center;text-align:center;padding:8px;box-shadow:inset 0 -8px 18px rgba(0,0,0,.08);overflow:hidden}.reel span{font-size:24px}.reel b{display:block;font-size:11px;line-height:1.1;margin-top:5px;color:#2b1221}.reel.spinning span,.reel.spinning b{animation:tumble .12s linear infinite}@keyframes tumble{0%{transform:translateY(-14px);opacity:.35}100%{transform:translateY(14px);opacity:1}}
+    .lever{position:absolute;right:10px;top:118px;font-size:28px;filter:drop-shadow(0 5px 8px rgba(0,0,0,.18));transform:rotate(12deg)}.result{margin-top:14px;text-align:center}.result small{text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:900;font-size:11px}.result h2{margin:6px 0 4px;font-size:26px;line-height:1.05}.challenge{margin:12px 0 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;text-align:left}.challenge b{display:block;margin-bottom:4px}.challenge p{margin:0;color:var(--muted);font-size:14px;line-height:1.35}
+    .rule{font-size:12px;color:var(--muted);text-align:center;margin:12px 4px 0}.spinbar{position:fixed;left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(0deg,rgba(255,255,255,.92),rgba(255,255,255,.58));backdrop-filter:blur(18px);z-index:10}.night .spinbar{background:linear-gradient(0deg,rgba(19,7,31,.92),rgba(19,7,31,.45))}.spin{width:min(460px,100%);display:block;margin:0 auto;border:0;border-radius:22px;padding:18px 20px;background:linear-gradient(135deg,var(--hot),#ff7a59 50%,var(--gold));font-weight:1000;color:white;font-size:18px;letter-spacing:.04em;box-shadow:0 14px 32px rgba(255,71,126,.42)}.spin:active{transform:translateY(1px) scale(.99)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 10px 24px rgba(0,0,0,.07);backdrop-filter:blur(16px)}.card h3{margin:0 0 10px;font-size:15px}.stat{font-size:26px;font-weight:1000}.stat-label{font-size:12px;color:var(--muted);margin-top:2px}.wide{grid-column:1/-1}.history{display:flex;flex-direction:column;gap:8px}.history-item{display:flex;justify-content:space-between;gap:10px;padding:10px;border-radius:14px;background:rgba(255,255,255,.42);font-size:13px}.night .history-item{background:rgba(255,255,255,.08)}.badgebox{display:flex;gap:8px;flex-wrap:wrap}.badge{font-size:12px;padding:8px 10px;border-radius:999px;background:rgba(255,191,61,.20);border:1px solid rgba(255,191,61,.32);font-weight:800}.locked{opacity:.45;filter:grayscale(1)}
+    .levelbar{height:12px;border-radius:999px;background:rgba(255,255,255,.48);overflow:hidden;margin-top:8px}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--hot),var(--gold));transition:width .8s ease}.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-150%);background:var(--text);color:var(--bg1);padding:11px 14px;border-radius:999px;font-weight:900;font-size:13px;z-index:50;transition:.35s}.toast.show{transform:translateX(-50%) translateY(0)}.confetti{position:fixed;inset:0;pointer-events:none;z-index:40}.confetti i{position:absolute;width:8px;height:14px;border-radius:3px;background:var(--hot);animation:fall 1.2s ease-out forwards}.confetti i:nth-child(3n){background:var(--gold)}.confetti i:nth-child(4n){background:var(--purple)}@keyframes fall{to{transform:translateY(105vh) rotate(700deg);opacity:0}}
+    .settings{position:fixed;inset:auto 10px 82px auto;background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:12px;box-shadow:var(--shadow);display:none;z-index:20;width:210px}.settings.show{display:block}.settings label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin:8px 0 6px}.settings input{width:100%}.tiny{font-size:11px;color:var(--muted);line-height:1.3;margin-top:7px}select{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card);color:var(--text);font-weight:800}
+  </style>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="hero">
-      <button id="musicBtn" class="icon-btn" aria-label="Toggle music">🔇</button>
-      <p class="eyebrow">Mobile-first love arcade</p>
-      <h1>❤️ The Josh & KJ Decision Machine</h1>
-      <p class="tagline">Making decisions so we don’t have to.</p>
-    </header>
-
-    <main>
-      <section class="card controls-card">
-        <div class="segment" role="tablist" aria-label="Decision mode">
-          <button class="mode-btn active" data-mode="activities">🎡 Activities</button>
-          <button class="mode-btn" data-mode="foods">🍜 Food</button>
-        </div>
-
-        <div class="filters">
-          <label>
-            Mood
-            <select id="moodFilter">
-              <option value="all">Surprise Me</option>
-              <option value="romantic">Romantic</option>
-              <option value="adventurous">Adventurous</option>
-              <option value="relaxing">Relaxing</option>
-              <option value="budget">Budget-Friendly</option>
-              <option value="active">Active</option>
-            </select>
-          </label>
-          <label>
-            Budget
-            <select id="budgetFilter">
-              <option value="all">Any Budget</option>
-              <option value="0-20">RM0–20</option>
-              <option value="20-50">RM20–50</option>
-              <option value="50-100">RM50–100</option>
-              <option value="100+">RM100+</option>
-            </select>
-          </label>
-          <label>
-            Distance
-            <select id="distanceFilter">
-              <option value="all">Anywhere</option>
-              <option value="nearby">Nearby</option>
-              <option value="20min">Up to 20 mins</option>
-              <option value="anywhere">Roadtrip Mood</option>
-            </select>
-          </label>
-          <label class="weather-toggle">
-            <input type="checkbox" id="rainToggle" />
-            Hide outdoor if raining 🌧️
-          </label>
-        </div>
-      </section>
-
-      <section class="machine-card card">
-        <div class="slot-top">
-          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
-          <strong>JACKPOT REEL</strong>
-          <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
-        </div>
-        <div class="slot-window" aria-live="polite">
-          <div id="reel" class="reel">Tap SPIN</div>
-        </div>
-        <button id="spinBtn" class="spin-btn">🎰 SPIN THE JACKPOT</button>
-        <p class="rule">🔁 With mutual agreement, we can spin again.</p>
-      </section>
-
-      <section class="card result-card">
-        <p class="section-label">🏆 Today’s Decision</p>
-        <h2 id="resultTitle">Ready when you are</h2>
-        <p id="resultMeta" class="meta">Pick a mode, set the vibe, then spin.</p>
-        <div class="challenge-box">
-          <span>💡 Challenge</span>
-          <p id="challengeText">No “anything also can” allowed.</p>
-        </div>
-      </section>
-
-      <section class="card meter-card">
-        <div class="meter-header">
-          <div>
-            <p class="section-label">💖 Date Night Meter</p>
-            <h3 id="meterTitle">Balanced Couple Energy</h3>
-          </div>
-          <span id="levelBadge">Lv. 1</span>
-        </div>
-        <div class="meter"><span id="meterFill"></span></div>
-        <p id="meterNote">Spin to build your tiny empire of memories.</p>
-      </section>
-
-      <section class="card achievements-card">
-        <p class="section-label">🏅 Achievements</p>
-        <div id="achievements" class="achievements"></div>
-      </section>
-
-      <section class="card stats-card">
-        <p class="section-label">📊 Couple Stats</p>
-        <div class="stats-grid">
-          <div><strong id="totalSpins">0</strong><span>Total Spins</span></div>
-          <div><strong id="foodSpins">0</strong><span>Food Picks</span></div>
-          <div><strong id="dateSpins">0</strong><span>Date Picks</span></div>
-          <div><strong id="jackpots">0</strong><span>Jackpots</span></div>
-        </div>
-      </section>
-
-      <section class="card history-card">
-        <div class="section-row">
-          <p class="section-label">📜 Recent Spins</p>
-          <button id="clearBtn" class="ghost-btn">Clear</button>
-        </div>
-        <ul id="historyList" class="history-list"></ul>
-      </section>
-    </main>
-  </div>
-
-  <div id="confetti" class="confetti" aria-hidden="true"></div>
-  <audio id="bgMusic" loop preload="auto"></audio>
-  <script src="app.js"></script>
+  <div class="bg"><span class="float">❤️</span><span class="float">🍜</span><span class="float">🎰</span><span class="float">🎡</span><span class="float">✨</span></div>
+  <div class="toast" id="toast">Ready</div><div class="confetti" id="confetti"></div>
+  <main class="app">
+    <header class="top"><div class="brand"><h1>❤️ The Josh & KJ Decision Machine</h1><p>Making decisions so we don't have to.</p></div><button class="icon-btn" id="musicBtn" aria-label="Toggle music">🔇</button><button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙️</button></header>
+    <section class="hello"><b id="greeting">Ready to make another memory?</b><span>Pick a mode, set the vibe, then let destiny do the tiny paperwork.</span></section>
+    <nav class="tabs"><button class="tab active" data-mode="activity">🎡 Activities</button><button class="tab" data-mode="food">🍜 What to Eat?</button></nav>
+    <section class="filters" id="filters"></section>
+    <section class="slot">
+      <div class="lights"><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span></div>
+      <div class="machine"><div class="reels"><div class="reel" id="reel1"><span>❤️</span><b>JOSH</b></div><div class="reel" id="reel2"><span>🎰</span><b>& KJ</b></div><div class="reel" id="reel3"><span>✨</span><b>LUCK</b></div></div></div><div class="lever">🕹️</div>
+      <div class="result"><small>Today's Decision</small><h2 id="resultTitle">Tap SPIN</h2><div class="challenge"><b>💡 Challenge</b><p id="challengeText">First tap starts the music and wakes up the machine.</p></div></div>
+      <p class="rule">🔁 With mutual agreement, we can spin again. The goal is time together, not obeying a wheel with confidence issues.</p>
+    </section>
+    <section class="grid">
+      <div class="card"><h3>❤️ Couple Level</h3><div class="stat" id="level">1</div><div class="stat-label" id="levelText">0 memories made</div><div class="levelbar"><div class="fill" id="levelFill"></div></div></div>
+      <div class="card"><h3>🔥 Streak</h3><div class="stat" id="streak">0</div><div class="stat-label">spins this season</div></div>
+      <div class="card wide"><h3>📜 Recent Spins</h3><div class="history" id="history"><div class="history-item"><span>No spins yet</span><span>🎰</span></div></div></div>
+      <div class="card wide"><h3>🏆 Achievements</h3><div class="badgebox" id="badges"></div></div>
+      <div class="card"><h3>🍜 Food Picks</h3><div class="stat" id="foodCount">0</div><div class="stat-label" id="topFood">No favorite yet</div></div>
+      <div class="card"><h3>🎡 Date Picks</h3><div class="stat" id="activityCount">0</div><div class="stat-label" id="topActivity">No favorite yet</div></div>
+    </section>
+  </main>
+  <aside class="settings" id="settingsPanel"><label>Music Volume</label><input type="range" id="volume" min="0" max="100" value="55"><label>Playlist</label><select id="trackSelect"><option value="music/lofi.mp3">Lo-fi</option><option value="music/happy.mp3">Happy</option><option value="music/arcade.mp3">Arcade</option><option value="music/romantic.mp3">Romantic</option></select><div class="tiny">Put your MP3 files in a <b>music</b> folder. The app starts music after the first tap because phones block loud surprise songs.</div></aside>
+  <div class="spinbar"><button class="spin" id="spinBtn">🎰 SPIN THE JACKPOT</button></div>
+  <audio id="bgMusic" loop preload="none"></audio>
+  <script>
+    const activities = [
+      ['🎲','Board Games','Winner chooses dessert','Relaxing','RM0-20','Indoor'],['🎬','Movies','Loser buys popcorn','Relaxing','RM20-50','Indoor'],['🦁','Zoo','Find the animal that resembles your partner','Adventurous','RM50-100','Outdoor'],['📚','Library','Pick one random book for each other','Relaxing','RM0-20','Indoor'],['🎨','Batik Painting','Paint one tiny thing that reminds you of us','Creative','RM50-100','Indoor'],['🏺','Pottery','Make something wonderfully imperfect','Creative','RM50-100','Indoor'],['🗼','KL Tower','Take one dramatic tourist photo','Adventurous','RM50-100','Indoor'],['🐠','KLCC / Aquaria','Pick your favorite sea creature','Relaxing','RM50-100','Indoor'],['🛷','Skyline Luge','Winner gets bragging rights for 24 hours','Adventurous','RM100+','Outdoor'],['🥾','Hiking','No complaining for the first 20 minutes','Adventurous','RM0-20','Outdoor'],['🧺','Picnic','No phones for 30 minutes','Romantic','RM20-50','Outdoor'],['🚲','Cycling at the Park','Race to the next tree','Adventurous','RM20-50','Outdoor'],['🌊','Sunway Lagoon','Take one silly waterpark photo','Adventurous','RM100+','Outdoor'],['💆','Couple Massage','No talking for the first 10 minutes','Romantic','RM100+','Indoor'],['🐄','Farm Fresh @ UPM','Share one dessert or drink','Relaxing','RM20-50','Outdoor'],['☕','Work at the Cafe','One focused hour, then reward drink','Relaxing','RM20-50','Indoor'],['📖','Read a book at the Cafe','Read quietly for 20 minutes','Relaxing','RM20-50','Indoor'],['🏛️','Museum','Each person finds one weird exhibit','Creative','RM20-50','Indoor'],['🏖️','To the Beach!','Find the prettiest shell or view','Romantic','RM50-100','Outdoor'],['🐱','Pet Cafe','Pick the cutest resident employee','Relaxing','RM20-50','Indoor'],['🏸','Badminton','Loser buys drinks','Adventurous','RM20-50','Indoor'],['🏐','Volleyball','Celebrate every point dramatically','Adventurous','RM0-20','Outdoor'],['🎻','Orchestra / Musical','Dress a little fancy','Romantic','RM100+','Indoor'],['🎤','Karaoke','Sing one duet without escaping','Creative','RM50-100','Indoor'],['🧱','Build a Block / Lego','Build something for each other','Creative','RM20-50','Indoor'],['🔐','Escape Room','No blaming each other','Adventurous','RM50-100','Indoor'],['🛶','Kayak','Synchronize for at least five minutes','Adventurous','RM50-100','Outdoor'],['🧗','Bouldering','Highest climb chooses dinner','Adventurous','RM50-100','Indoor']
+    ];
+    const foods = [
+      ['🍣','Japanese','Order something new','Any','RM20-50','Indoor'],['🥩','Korean BBQ','Cook food for your partner only','Any','RM50-100','Indoor'],['🍝','Western Food','Share one side','Any','RM20-50','Indoor'],['🍔','Fast Foods','No fries until burger is done','Any','RM20-50','Indoor'],['🌶️','Ayam Gepuk','Medium spicy minimum','Any','RM20-50','Indoor'],['🍜','Super Kitchen Chili Pan Mee','Finish every noodle','Any','RM20-50','Indoor'],['🧘','Fasting','Save money for the next date','Budget','RM0-20','Indoor'],['🍜','Noodle','Try a different soup or topping','Any','RM20-50','Indoor'],['🍜','Fu Fu Noodles','Share one side dish','Any','RM20-50','Indoor'],['🥘','Hai Di Lao','Try one ingredient you have never eaten','Any','RM100+','Indoor'],['🍗','Borenos!','Share fries like civilised adults','Any','RM20-50','Indoor'],['👩‍🍳','KJ Cook','Josh washes dishes','Romantic','RM0-20','Indoor'],['🍚','Sukiya','No ordering the same bowl as last time','Any','RM20-50','Indoor'],['🥬','Eat Healthy. Veggies only!','No dessert today','Budget','RM20-50','Indoor'],['🧢','Anything Josh wants','KJ cannot complain','Any','RM20-50','Indoor'],['🎀','Anything KJ wants','Josh cannot say anything','Any','RM20-50','Indoor'],['☕','Thong Kee','Order one thing to share','Any','RM20-50','Indoor'],['🍖','Ribs King','Saucy fingers are part of the ritual','Any','RM50-100','Indoor'],['🍜','Noodle Art','Share one drink','Any','RM20-50','Indoor'],['🌿','Rustic Borneo','Pick something Sarawak-coded','Any','RM20-50','Indoor'],['🍣','Sushi Ten','One plate chosen by each person','Any','RM20-50','Indoor'],['🍜','Mama Ting','Choose one comfort dish','Any','RM20-50','Indoor'],['🍲','Bak Kut Teh','Extra yau char kwai','Any','RM20-50','Indoor'],['🥢','Yong Tau Foo','Each person picks 3 items','Any','RM20-50','Indoor'],['🍔','Burgerlabs','Rate the burger like food critics','Any','RM20-50','Indoor']
+    ];
+    const jackpots = [['🍦','LOVE JACKPOT: Ice Cream Date','Go get ice cream, no overthinking'],['🌅','LOVE JACKPOT: Sunset Walk','Walk until the sky changes color'],['🎁','LOVE JACKPOT: RM20 Surprise Gift','Buy one tiny gift for each other'],['☕','LOVE JACKPOT: Coffee & Deep Talk','Ask one question you have never asked before'],['💆','MEGA JACKPOT: Free Massage Voucher','Winner receives one free massage']];
+    let mode='activity', activeFilter='All', spinning=false;
+    const $=id=>document.getElementById(id); const tabs=[...document.querySelectorAll('.tab')];
+    const reelEls=[$('reel1'),$('reel2'),$('reel3')]; const music=$('bgMusic');
+    const state=JSON.parse(localStorage.getItem('jkjState')||'{"history":[],"counts":{},"music":"off","volume":55,"track":"music/lofi.mp3","spins":0}');
+    function save(){localStorage.setItem('jkjState',JSON.stringify(state))}
+    function greet(){const h=new Date().getHours(); if(h>=19||h<6){document.body.classList.add('night');$('greeting').textContent='Good evening Josh & KJ 🌙'}else{$('greeting').textContent='Ready to make another memory? ☀️'}}
+    greet(); music.src=state.track||'music/lofi.mp3'; music.volume=(state.volume??55)/100; $('volume').value=state.volume??55; $('trackSelect').value=state.track||'music/lofi.mp3'; $('musicBtn').textContent=state.music==='on'?'🔊':'🔇';
+    function filtersFor(){return mode==='activity'?['All','Relaxing','Romantic','Creative','Adventurous','RM0-20','RM20-50','RM50-100','RM100+','Indoor','Outdoor']:['All','Any','Romantic','Budget','RM0-20','RM20-50','RM50-100','RM100+']}
+    function renderFilters(){ $('filters').innerHTML=filtersFor().map(f=>`<button class="chip ${f===activeFilter?'active':''}" data-filter="${f}">${f}</button>`).join(''); document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{activeFilter=c.dataset.filter;renderFilters();toast('Filter: '+activeFilter)}) }
+    tabs.forEach(t=>t.onclick=()=>{tabs.forEach(x=>x.classList.remove('active'));t.classList.add('active');mode=t.dataset.mode;activeFilter='All';renderFilters();toast(mode==='activity'?'Activity mode':'Food mode')}); renderFilters();
+    function pool(){let p=mode==='activity'?activities:foods; if(activeFilter==='All') return p; return p.filter(x=>x.includes(activeFilter));}
+    function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+    function startMusic(){ if(state.music==='on'){music.play().catch(()=>{})} }
+    document.addEventListener('pointerdown',()=>{ if(!window.started){window.started=true; if(state.music!=='off'){state.music='on'; save(); $('musicBtn').textContent='🔊'; startMusic()} }},{once:true});
+    $('musicBtn').onclick=()=>{state.music=state.music==='on'?'off':'on';save();$('musicBtn').textContent=state.music==='on'?'🔊':'🔇'; state.music==='on'?music.play().catch(()=>toast('Tap SPIN to start music')):music.pause();};
+    $('settingsBtn').onclick=()=>$('settingsPanel').classList.toggle('show'); $('volume').oninput=e=>{state.volume=+e.target.value; music.volume=state.volume/100; save()}; $('trackSelect').onchange=e=>{state.track=e.target.value; music.src=state.track; save(); if(state.music==='on')music.play().catch(()=>{})};
+    function spin(){ if(spinning)return; spinning=true; startMusic(); const oldVol=music.volume; music.volume=Math.min(oldVol,.25); reelEls.forEach(r=>r.classList.add('spinning')); $('resultTitle').textContent='Spinning...'; $('challengeText').textContent=pick(['Consulting the food gods...','Negotiating with destiny...','Preventing another “anything is fine”...','Loading couple chaos...']);
+      let items=pool(); if(!items.length) items=mode==='activity'?activities:foods; let ticks=0; const iv=setInterval(()=>{reelEls.forEach(r=>{const x=pick(items); r.innerHTML=`<span>${x[0]}</span><b>${x[1]}</b>`}); ticks++},90);
+      setTimeout(()=>{clearInterval(iv); let isJackpot=Math.random()<0.12; let x=isJackpot?pick(jackpots):pick(items); reelEls[0].innerHTML=`<span>${x[0]}</span><b>${x[1].split(':').pop().trim().split(' ')[0]||'LOVE'}</b>`; reelEls[1].innerHTML=`<span>${isJackpot?'🎉':'❤️'}</span><b>${mode==='activity'?'DATE':'FOOD'}</b>`; reelEls[2].innerHTML=`<span>${isJackpot?'✨':'🎰'}</span><b>WIN</b>`; reelEls.forEach(r=>r.classList.remove('spinning')); $('resultTitle').textContent=x[1]; $('challengeText').textContent=x[2]; record(x,isJackpot); if(navigator.vibrate) navigator.vibrate(isJackpot?[80,40,80]:40); burst(isJackpot?90:35); toast(isJackpot?'JACKPOT!':'Decision locked'); music.volume=oldVol; spinning=false;},1900)}
+    $('spinBtn').onclick=spin;
+    function record(x,jackpot){state.spins=(state.spins||0)+1; const type=jackpot?'jackpot':mode; const key=type+':'+x[1]; state.counts[key]=(state.counts[key]||0)+1; state.history.unshift({icon:x[0],title:x[1],type,time:new Date().toLocaleDateString('en-MY',{month:'short',day:'numeric'})}); state.history=state.history.slice(0,12); save(); renderStats()}
+    function renderStats(){const h=state.history||[]; $('history').innerHTML=h.length?h.slice(0,6).map(i=>`<div class="history-item"><span>${i.icon} ${i.title}</span><span>${i.time}</span></div>`).join(''):'<div class="history-item"><span>No spins yet</span><span>🎰</span></div>'; const total=state.spins||0; const level=Math.floor(total/5)+1; $('level').textContent=level; $('levelText').textContent=total+' memories made'; $('levelFill').style.width=((total%5)/5*100)+'%'; $('streak').textContent=total; const food=h.filter(i=>i.type==='food').length, act=h.filter(i=>i.type==='activity').length; $('foodCount').textContent=food; $('activityCount').textContent=act; $('topFood').textContent=top('food')||'No favorite yet'; $('topActivity').textContent=top('activity')||'No favorite yet'; renderBadges(total,food,act,h.filter(i=>i.type==='jackpot').length)}
+    function top(type){let best='',n=0; for(const [k,v] of Object.entries(state.counts||{})){if(k.startsWith(type+':')&&v>n){n=v;best=k.split(':').slice(1).join(':')}} return best?`Top: ${best}`:''}
+    function renderBadges(total,food,act,jack){const all=[['First Spin',total>=1],['5 Memories',total>=5],['Food Explorer',food>=5],['Adventure Couple',act>=5],['Jackpot Lovers',jack>=1],['Level 5 Couple',total>=20]]; $('badges').innerHTML=all.map(b=>`<span class="badge ${b[1]?'':'locked'}">${b[1]?'🏆':'🔒'} ${b[0]}</span>`).join('')}
+    renderStats();
+    function burst(n){const c=$('confetti'); c.innerHTML=''; for(let i=0;i<n;i++){const e=document.createElement('i'); e.style.left=Math.random()*100+'vw'; e.style.top='-20px'; e.style.animationDelay=Math.random()*.25+'s'; e.style.transform=`rotate(${Math.random()*360}deg)`; c.appendChild(e)} setTimeout(()=>c.innerHTML='',1500)}
+    function toast(msg){$('toast').textContent=msg; $('toast').classList.add('show'); setTimeout(()=>$('toast').classList.remove('show'),1300)}
+    if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+  </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const CACHE = 'decision-machine-v1';
-const FILES = ['./','./index.html','./styles.css','./app.js','./manifest.json'];
-self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES))));
-self.addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(res => res || fetch(event.request))));
+const CACHE='jkj-v3';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
+self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));
