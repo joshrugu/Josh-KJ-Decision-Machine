@@ -159,7 +159,7 @@ $('clearBtn').addEventListener('click', () => { state = {history:[], stats:{tota
 $('musicBtn').addEventListener('click', () => {
   const audio = $('bgMusic');
   if (!audio.src) alert('Add your music file as music.mp3 in this folder, then set bgMusic.src = "music.mp3" in app.js.');
-  audio.src = 'music.mp3'; if (audio.paused) { audio.play().catch(()=>{}); $('musicBtn').textContent = '🔊'; }
+  if (audio.paused) { audio.play().catch(()=>{}); $('musicBtn').textContent = '🔊'; }
   else { audio.pause(); $('musicBtn').textContent = '🔇'; }
 });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
